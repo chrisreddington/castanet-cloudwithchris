@@ -1,27 +1,31 @@
 <!-- Google Analytics -->
 {{ if .Site.Params.GATracker }}
-<!-- Cookie Consent by https://www.PrivacyPolicies.com -->
-<script type="text/javascript" src="//www.privacypolicies.com/public/cookie-consent/3.1.0/cookie-consent.js"></script>
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function () {
-cookieconsent.run({"notice_banner_type":"headline","consent_type":"express","palette":"light","language":"en","website_name":"Cloud With Chris","cookies_policy_url":"https://www.cloudwithchris.com/privacy-policy"});
-});
-</script>
-
-<!-- Google Analytics -->
-
-<script type="text/plain" cookie-consent="tracking">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', '{{ .Site.Params.GATracker }}', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<!-- end of Google Analytics-->
-
-<noscript>Cookie Consent by <a href="https://www.PrivacyPolicies.com/cookie-consent/" rel="nofollow noopener">PrivacyPolicies.com</a></noscript>
-<!-- End Cookie Consent -->
+  {{- $pc := .Site.Config.Privacy.GoogleAnalytics -}}
+  {{- if not $pc.Disable -}}
+  {{ with .Site.GoogleAnalytics }}
+  <script type="application/javascript" cookie-consent="tracking">
+  {{ template "__ga_js_set_doNotTrack" $ }}
+  if (!doNotTrack) {
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    {{- if $pc.UseSessionStorage }}
+    if (window.sessionStorage) {
+      var GA_SESSION_STORAGE_KEY = 'ga:clientId';
+      ga('create', '{{ . }}', {
+        'storage': 'none',
+        'clientId': sessionStorage.getItem(GA_SESSION_STORAGE_KEY)
+      });
+      ga(function(tracker) {
+        sessionStorage.setItem(GA_SESSION_STORAGE_KEY, tracker.get('clientId'));
+      });
+    }
+    {{ else }}
+    ga('create', '{{ . }}', 'auto');
+    {{ end -}}
+    {{ if $pc.AnonymizeIP }}ga('set', 'anonymizeIp', true);{{ end }}
+    ga('send', 'pageview');
+  }
+  </script>
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  {{ end }}
+  {{- end -}}
 {{ end }}
