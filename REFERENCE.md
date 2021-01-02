@@ -18,6 +18,7 @@
     - [Taxonomies](#taxonomies)
     - [Menus](#menus)
     - [Podlove Subscribe Button](#podlove-subscribe-button)
+- [Blogs](#blogs)
 - [Episodes](#episodes)
     - [Upcoming Episodes](#upcoming-episodes)
 - [Guests](#guests)
@@ -58,7 +59,6 @@ These should be set under the `[params]` section:
 | `stitcher_subscribe`     | No       | The URL to your podcast on Stitcher.                                                                                                                                                                                                                                | "http://www.stitcher.com/podcast/arrested-devops-2/arrested-devops"                                                                                                                                                                       |
 | `soundcloud_subscribe`  | No       | The URL to your podcast's feed on Soundcloud                                                                                                                                                                                                                        | "http://feeds.soundcloud.com/users/soundcloud:users:203144248/sounds.rss"                                                                                                                                                                 |
 | `pocketcasts_subscribe` | No       | The URL to your podcast's feed on Pocketcasts                                                                                                                                                                                                                       | "http://pcasts.in/feed/feeds.soundcloud.com/users/soundcloud:users:203144248/sounds.rss"                                                                                                                                                  |
-
 | `spotify_subscribe` | No       | The URL to your podcast's page on Spotify                                                                                                                                                                                                                       | "https://open.spotify.com/show/7hHA2ZlfOmbwv96wEBaMR2?si=UeVjoWIVSqqLluJd4TlEUg"                                                                                                                                                  |
 | `mailchimp_subscribe`   | No       | The URL for your MailChimp signup form. This can be acquired from creating a "Super Slim" Embedded form on MailChimp. Do NOT include the entire form HTML; you just need the path for the `form action`.                                                            | "//arresteddevops.us3.list-manage.com/subscribe/post?u=5e4cbcac996bb9df25f970a89&id=154fa76bcc"                                                                                                                                           |
 | `rss_subscribe`         | No       | Optional parameter to over-ride the RSS feed URL, in case you use something like Feedburner. You likely do NOT need to set this parameter unless you have a very good reason to do so.                                                                              | "http://feeds.podtrac.com/VGAulpN7MY1U"                                                                                                                                                                                                   |
@@ -129,6 +129,7 @@ We use the "authors" from the configuration to list hosts in the jumbotron or si
 | Field Name  | Required | Description                                                                                   | Example                                                                                                                                                                                                                                                                                                                                                                                                       |
 |-------------|----------|-----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`      | Yes      | The full name of the author/host.                                                             | "Matt Stratton"                                                                                                                                                                                                                                                                                                                                                                                               |
+| `Pronouns`      | no      | The preferred pronoun of the author/host.                                                             | "She/Her", "He/him", "They/Them"                                                                                                                                                                                                                                                                                                                                                                                               |
 | `thumbnail` | Yes      | The image for the user. This can either be a fully qualifed URL, or relative to the baseURL.  | "http://www.arresteddevops.com/matt.png" or "img/hosts/matt.png"                                                                                                                                                                                                                                                                                                                                              |
 | `bio`       | Yes      | The author/host bio. Supports Markdown.                                                       | "Matt Stratton is a solutions architect at Chef, where he demonstrates how Chef’s automation platform provides speed and flexibility to clients’ infrastructure. He is devoted to concepts like Continuous Delivery and Infrastructure as Code, and his license plate actually says “DevOps”. He lives in Chicago and has an unhealthy obsession with Doctor Who, Firefly, and Game of Thrones. And whiskey." |
 
@@ -267,6 +268,53 @@ To customize your button please add the following section to your `config.toml`,
   subscribe_feed_format = "mp3"     # options: mp3, aac, ogg, opus
 ```
 
+## Blogs
+
+Every blogs requires a page in the `content/blog` on your site. The command `hugo new blog/myblog.md` should populate it properly.
+
+A blog file takes the following structure:
+
+```
++++
+Description = "Another blog post!"
+Date = 2020-11-12T13:33:18-06:00
+PublishDate = 2020-11-12T13:33:18-06:00 # this is the datetime for the when the epsiode was published. This will default to Date if it is not set. Example is "2016-04-25T04:09:45-05:00"
+title = "My second blog"
+images = ["img/episode/default-social.jpg"]
+blog_image = "img/episode/default.jpg"
+Author = "Chris Reddington"
+categories = ["DevOps", "Release"]
+tags = ["Ring Deployment", "Phased Rollout"]
+series = ["The Nirvana of DevOps"]
+#aliases = ["/##"]
++++
+YOLO keytar scenester, williamsburg etsy mlkshk neutra hexagon photo booth church-key messenger bag. Lyft small batch enamel pin, bicycle rights la croix migas chartreuse ramps microdosing authentic pickled gochujang kombucha. Wolf vaporware stumptown, glossier vinyl everyday carry organic. Subway tile af tumblr listicle photo booth meh trust fund tote bag. Post-ironic gentrify direct trade blue bottle, fingerstache master cleanse butcher. Succulents ethical leggings hexagon vexillologist migas you probably haven't heard of them keytar sustainable church-key viral salvia hell of kinfolk. Lumbersexual taiyaki la croix literally man bun, truffaut mustache godard edison bulb artisan keytar jianbing air plant swag polaroid.
+
+Actually vinyl fingerstache kickstarter +1 roof party, XOXO swag tousled cold-pressed authentic affogato selvage taiyaki schlitz. Stumptown tumeric lumbersexual, pok pok pabst butcher helvetica coloring book keytar williamsburg. Fam cloud bread meditation, post-ironic waistcoat narwhal chicharrones live-edge authentic try-hard cornhole bespoke kickstarter echo park portland. Cold-pressed lo-fi cornhole kinfolk. Sustainable scenester seitan, vape fanny pack put a bird on it succulents. 90's dreamcatcher messenger bag flannel +1 taxidermy occupy single-origin coffee four dollar toast master cleanse VHS. Small batch williamsburg tumeric meggings fanny pack pok pok paleo cardigan.
+
+Leggings photo booth beard tumeric heirloom 90's flexitarian locavore unicorn, salvia humblebrag biodiesel lomo. Bushwick chillwave distillery kombucha tbh cray roof party tacos. Wayfarers fingerstache irony, celiac schlitz microdosing austin keytar echo park. Flannel drinking vinegar austin sustainable banjo bicycle rights keytar subway tile intelligentsia williamsburg humblebrag vinyl. Prism keffiyeh mlkshk, venmo glossier distillery +1 raw denim edison bulb pinterest crucifix. Freegan iceland chartreuse leggings hella single-origin coffee tilde. Swag neutra chia before they sold out.
+
+Cred tilde flannel shaman helvetica cronut bitters mlkshk. Selvage lyft chartreuse shaman man braid gastropub tattooed post-ironic organic freegan austin forage. Enamel pin unicorn +1 schlitz lomo man bun wayfarers. Readymade bespoke polaroid iceland sriracha schlitz tousled flannel. Raw denim enamel pin fanny pack sustainable, butcher deep v thundercats try-hard forage woke fam keffiyeh. Cronut kitsch cray shoreditch pabst paleo normcore DIY bespoke cardigan pug. Crucifix bitters knausgaard neutra, viral distillery selvage banh mi activated charcoal cray.
+
+Tofu taiyaki sriracha unicorn try-hard cornhole cloud bread keytar wayfarers kinfolk pour-over art party small batch. Tousled DIY coloring book wolf, small batch master cleanse austin letterpress af. Humblebrag pop-up vaporware, readymade organic woke af la croix succulents. Yr hoodie mlkshk woke whatever portland cornhole, brunch raw denim shaman YOLO prism bicycle rights. Helvetica la croix fingerstache chambray tumblr ramps blog waistcoat 8-bit. Dreamcatcher stumptown distillery mixtape sriracha blog la croix. Pabst copper mug street art, kinfolk letterpress chambray swag occupy shoreditch echo park migas post-ironic.
+
+Dummy text? More like dummy thicc text, amirite?
+```
+
+| Field Name   | Required | Description                                                                                                                                                                      | Example                               |
+|--------------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
+| Description  | Yes      | The description of the blog, which is used on summary pages as well as the feed. Markdown is allowed, but only links.                                                            | Another blog post!                    |
+| Date         | Yes      | The release date of the blog. The hugo new blog will pre-populate this, but you may want to adjust it.                                                                           | 2020-11-12T13:33:18-06:00             |
+| PublishDate  | No       | The datetime used by hugo when the blog should be published. This is only required if you want to set the blog post to be released on a different date from when it was written. | 2020-11-12T13:33:18-06:00             |
+| title        | Yes      | The title of the blog.                                                                                                                                                           | "My second blog"                      |
+| images       | No       | The social sharing image used by Facebook, Twitter, etc. The archetype will populate this with a default sharing image. This image needs to be relative to your baseURL          | "img/episode/default-social.jpg"      |
+| blog_image   | Yes      | The square thumbnail to represent the blog. A default image is provided, and the archetype will pre-populate it. This image needs to be relative to your baseURL.                | "img/episode/default.jpg"             |
+| Author       | Yes      | The text representation of the Author of the post.                                                                                                                               | "Chris Reddington"                    |
+| categories[] | No       | If you are using taxonomies, this is the array of categories for the blog.                                                                                                       | ["DevOps", "Release"]                 |
+| series[]     | No       | If you are using taxonomies, this is the array of series for the blog.                                                                                                           | ["The Nirvana of DevOps"]             |
+| tags[]       | No       | If you are using taxonomies, this is the array of tags for the                                                                                                                   | ["Ring Deployment", "Phased Rollout"] |
+| aliases      | No       | Other aliases for this blog.                                                                                                                                                     | ["/##"]                               |
+
 ## Episodes
 
 Every episode requires a page in the `content/episode` on your site. The command `hugo new episode/myepisode.md` should populate it properly.
@@ -346,6 +394,7 @@ A guest file takes the following structure:
 ```
 +++
 Title = "John Doe"
+Pronouns = "They/Them"
 Twitter = "johndoe"
 Website = "http://www.google.com"
 Type = "guest"
@@ -364,6 +413,7 @@ Spoon fresh pie ingredients groceries oranges luncheon farm. Broth chick peas Ch
 | Field Name  | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Example                        |
 |-------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
 | `Title`     | Yes      | The full name of the guest. This is what is displayed on the episode page, etc.                                                                                                                                                                                                                                                                                                                                                                                                             | "Jane Smith"                   |
+| `Pronouns`      | no      | The preferred pronoun of the author/host.                                                             | "She/Her", "He/him", "They/Them"                                                                                                                                                                                                                                                                                                                                                                                               |
 | `Thumbnail` | No       | The image for the guest. This image must be 500 px x 500 px. You can either enter a value relative to your `BaseURL`, or a fully qualified URL. If you want to use the default, set this to `""`. Optional. If left blank, or not existent, a default image will be provided. You can replace this default image by putting a new 500 px x 500 px PNG image at `/static/img/guest/default-guest.png` in your site (not in the theme!). Please ensure that this path does NOT start with `/` | "img/guest/jane-smith.png"     |
 | `Website`   | No       | The guest's website. Be use to includ http(s) at the beginning.                                                                                                                                                                                                                                                                                                                                                                                                                             | "https://www.mattstratton.com" |
 | `GitHub`    | No       | Guest's GitHub username.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | "mattstratton"                 |
