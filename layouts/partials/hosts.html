@@ -22,8 +22,8 @@
             </div>
             <div class= "col-md-6">
               <h3><a href = "{{(printf "host/%s/" .File.BaseFileName) | absURL }}">{{ .Title }}</a>  {{ with .Params.Pronouns }}({{ . }}){{ end }}</h3>
-              <p>{{ if .Description }}
-                  {{ .Description | markdownify }}&nbsp;<small><a href = "{{ .Permalink }}">Read More</a></small>
+              <p>{{ if (and (isset .Params "shortbio") (ne .Params.ShortBio "")) }}
+                  {{ .Params.ShortBio | markdownify }}&nbsp;<small><a href = "{{ .Permalink }}">Read More</a></small>
                 {{ else }}
                   {{ .Content }}
                 {{ end }}</p>

@@ -134,8 +134,8 @@
                   <div class="col-md-8">
                     <h2><a href = "{{(printf "guest/%s/" .File.BaseFileName) | absURL }}">{{ .Title }}</a> {{ with .Params.Pronouns }}({{ . }}){{ end }}</h2>
 
-                    <p>{{ if .Description }}
-                      {{ .Description | markdownify }}&nbsp;<small><a href = "{{ .Permalink }}">Read More</a></small>
+                    <p>{{ if (and (isset .Params "shortbio") (ne .Params.ShortBio "")) }}
+                      {{ .Params.ShortBio | markdownify }}&nbsp;<small><a href = "{{ .Permalink }}">Read More</a></small>
                     {{ else }}
                       {{ .Content }}
                     {{ end }}</p>
@@ -257,7 +257,11 @@
             </div>
             <div class="col-md-8">
               <h2><a href = "{{(printf "host/%s/" .File.BaseFileName) | absURL }}">{{ .Title }}</a> {{ with .Params.Pronouns }}({{ . }}){{ end }}</h2>
-              {{ .Content }}
+              <p>{{ if (and (isset .Params "shortbio") (ne .Params.ShortBio "")) }}
+                {{ .Params.ShortBio | markdownify }}&nbsp;<small><a href = "{{ .Permalink }}">Read More</a></small>
+              {{ else }}
+                {{ .Content }}
+              {{ end }}</p>
               {{- with .Params.Website -}}
                 <a href="{{ . }}">
                   <i class="fas fa-home fa-2x"></i>
