@@ -1,7 +1,7 @@
 <section class="episode-list">
 <!-- rest of episodes -->
 {{- if (where site.RegularPages "Type" "in" site.Params.mainSections) -}}
-{{- $paginator := .Paginate (where ( where site.RegularPages "Type" "in" site.Params.mainSections) ".Params.upcoming" "==" true ) }}
+{{- $paginator := .Paginate (where ( where site.RegularPages "Type" "in" site.Params.mainSections) ".Params.upcoming" "==" true ).ByDate }}
 {{- $list := (where ( where site.RegularPages "Type" "in" site.Params.mainSections) ".Params.upcoming" "==" true ) -}}
 {{- $len := (len $list) -}}
 <div class="row main_container">
@@ -14,7 +14,7 @@
 {{- else -}}
   <div class="col-md-8">
 {{- end -}}
-    {{- range $paginator.Pages.ByDate -}}
+    {{- range $paginator.Pages -}}
     {{- with .Params.truncate -}}
       {{- $.Scratch.Set "truncate" . }}
     {{- else -}}
